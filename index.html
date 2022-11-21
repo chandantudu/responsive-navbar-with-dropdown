@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation bar with Dropdown Menu</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-wrap flex">
+            <section class="logo"><a href="">DevBabu.Com</a></section>
+            <section class="navbar">
+                <button class="close-navbar">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <nav>
+                    <ul class="flex">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">About</a></li>
+                        <li><a href="">Menu</a>
+                            <ul>
+                                <li><a href="">Item 1 is red</a></li>
+                                <li><a href="">Item 2 is blue</a></li>
+                                <li><a href="">Item 3 is green</a></li>
+                                <li><a href="">Item 4 is yellow</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </nav>
+            </section>
+            <section class="open-navbar">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </section>
+        </div>        
+    </header>
+    
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const openNav = document.querySelector('.open-navbar button');
+        const closeNav = document.querySelector('.close-navbar');
+        const innerUl = document.querySelectorAll('.navbar ul ul');
+
+        function submenuTrigger(e, el){
+            e.preventDefault();
+            el.classList.toggle('show-submenu');
+        }
+        
+        innerUl.forEach((el) => {
+                if(el.previousElementSibling.nodeName === 'A'){
+                    el.previousElementSibling.onclick = (e) => submenuTrigger(e, el);
+                }
+                el.previousElementSibling.classList.add("submenu-btn");
+        });
+
+        openNav.onclick = () => navbar.classList.add('show-navbar');
+        closeNav.onclick = () => navbar.classList.remove('show-navbar');
+    </script>
+</body>
+</html>
